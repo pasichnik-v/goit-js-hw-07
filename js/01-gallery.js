@@ -87,13 +87,21 @@ function onGalleryContainerClick(event) {
     if (!isGalleryImagesEl) {
         return;
     }
-    const instance = basicLightbox.create(`
-    <div class="modal">
-        <img src="${event.target.dataset.source}" width="1140" height="auto">
-    </div>
+//     const instance = basicLightbox.create(`
+//     <div class="modal">
+//         <img src="${event.target.dataset.source}" width="1140" height="auto">
+//     </div>
+// `)
+// instance.show()
+    // import * as basicLightbox from 'basiclightbox'
+
+const instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}">
 `)
+
 instance.show()
     console.log(event.target.dataset.source);
+    
     galleryContainer.addEventListener('keydown', closeImage)
     function closeImage(event) {
         if (event.code === 'Escape') {
