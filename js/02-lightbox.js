@@ -38,12 +38,12 @@ function onGalleryContainerClick(event) {
         return;
     }
     
-    var lightbox = new SimpleLightbox('.gallery a', { 
+    new SimpleLightbox('.gallery a', {
         captionsData: 'alt',
-		captionDelay: 250,
-		captionPosition: 'bottom',
+        captionDelay: 250,
+        captionPosition: 'bottom',
         captionType: 'attr',
     });
-    
+}
     // console.log(event.target);
     // console.log(event.currentTarget);
