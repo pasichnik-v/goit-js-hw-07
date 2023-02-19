@@ -14,7 +14,7 @@ const cardsMarkup = ctreatePicturesCardsMarkup(galleryItems);
 // Додаю розмітку в HTML
 galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
 // Створюю слухача, який створює події під час кліку
-galleryContainer.addEventListener('click', onGalleryContainerClick);
+galleryContainer.addEventListener('click', lightbox);
 
     
 // Функція: дії при кліку і Esc
@@ -28,22 +28,11 @@ function ctreatePicturesCardsMarkup(galleryItems) {
     })
         .join('');
 }
-// Відкриття картнки original
-function onGalleryContainerClick(event) {
-    event.preventDefault();
-
-    const isGalleryImagesEl = event.target.classList.contains('gallery__image');
-   
-    if (!isGalleryImagesEl) {
-        return;
-    }
-    
-    new SimpleLightbox('.gallery a', {
+var lightbox = new SimpleLightbox('.gallery a', { 
         captionsData: 'alt',
         captionDelay: 250,
         captionPosition: 'bottom',
-        captionType: 'attr',
-    });
-}
-    // console.log(event.target);
-    // console.log(event.currentTarget);
+        captionType: 'attr'
+     });
+    
+
