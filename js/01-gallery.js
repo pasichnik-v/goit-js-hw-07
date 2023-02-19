@@ -48,17 +48,25 @@ function onGalleryContainerClick(event) {
 
 const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}">
-`)
+    
+`,
+    {
+	
+	onShow: (instance) => {window.addEventListener('keydown', closeImage)},
+	
+    onClose: (instance) => { window.removeEventListener('keydown', closeImage) },
+}
+)
 
 instance.show()
-    // console.log(event.target.dataset.source);
+    
     // закриття модального вікна
-    galleryContainer.addEventListener('keydown', closeImage)
+    
     function closeImage(event) {
         if (event.code === 'Escape') {
             instance.close();
         }
-        console.log(event.code);
+        // console.log(event.code);
         
     }
 }

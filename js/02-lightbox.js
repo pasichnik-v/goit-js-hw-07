@@ -14,7 +14,7 @@ const cardsMarkup = ctreatePicturesCardsMarkup(galleryItems);
 // Додаю розмітку в HTML
 galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
 // Створюю слухача, який створює події під час кліку
-galleryContainer.addEventListener('click', lightbox);
+// galleryContainer.addEventListener('click', lightbox);
 
     
 // Функція: дії при кліку і Esc
@@ -28,11 +28,9 @@ function ctreatePicturesCardsMarkup(galleryItems) {
     })
         .join('');
 }
-var lightbox = new SimpleLightbox('.gallery a', { 
+const lightbox = new SimpleLightbox('.gallery a', { 
         captionsData: 'alt',
         captionDelay: 250,
-        captionPosition: 'bottom',
-        captionType: 'attr'
      });
     
 
