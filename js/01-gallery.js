@@ -5,62 +5,20 @@ console.log(galleryItems);
 
 
 
-// Реалізація делегування на div.gallery і отримання url великого зображення.
-// Підключення скрипту і стилів бібліотеки модального вікна basicLightbox. 
-// Використовуй CDN сервіс jsdelivr і додай у проект посилання на мініфіковані(.min) файли бібліотеки.
-// Відкриття модального вікна по кліку на елементі галереї. Для цього ознайомся з документацією і прикладами.
-// Заміна значення атрибута src елемента < img > в модальному вікні перед відкриттям. 
-// Використовуй готову розмітку модального вікна із зображенням з прикладів бібліотеки basicLightbox.
 
 
-
-
-
-
-// 1.
-// Створення і рендер розмітки на підставі масиву даних galleryItems і наданого шаблону елемента галереї.
-// Розмітка елемента галереї
-
-// Посилання на оригінальне зображення повинно зберігатися в data - атрибуті source на елементі < img >,
-//     і вказуватися в href посилання. 
-// Не додавай інші HTML теги або CSS класи, крім тих, що містяться в цьому шаблоні.
-
-
-//  Створити функцію, яка створить масив карток через map з картинками і описом. 
-// Додати картки в DOM div gallery
-// Додати активний клас і реалізувати щоб при кліку на картинку 
-// з попередньої активний клас видалявся, а до нової додавався
-// При кліку активний клас відкриває модалку розміром gallery 
-// в якій відображається фото з посиланням на original
-
-
-
-// нажати картнку-присвоєння активного стану- при активному стані відкривається модалка:
-// 
-// створити div з класом модал в якому розмістити crs original
-
-
-// const modalEl = document.createElement('div')
-// console.log(modalEl);
-// modalEl.classList.add('modal');
-
-// 
-// Присвоїти клас, який додасть з css розміри і тд..
-// -і викликається картинка original.
-// закривається модалка і знімається клас активний
-
-
-
+// Викликаю gallery
 const galleryContainer = document.querySelector('.gallery');
+// Присвоюю змінну виклику функції
 const cardsMarkup = ctreatePicturesCardsMarkup(galleryItems);
 
-
+// Додаю розмітку в HTML
 galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
-
+// Створюю слухача, який створює події під час кліку
 galleryContainer.addEventListener('click', onGalleryContainerClick);
 
     
-
+// Функція: дії при кліку і Esc
 function ctreatePicturesCardsMarkup(galleryItems) { 
     return galleryItems.map(({ preview, original, description }) => {
         return `
@@ -78,7 +36,7 @@ function ctreatePicturesCardsMarkup(galleryItems) {
     })
         .join('');
 }
-
+// Відкриття картнки original
 function onGalleryContainerClick(event) {
     event.preventDefault();
 
@@ -87,21 +45,14 @@ function onGalleryContainerClick(event) {
     if (!isGalleryImagesEl) {
         return;
     }
-//     const instance = basicLightbox.create(`
-//     <div class="modal">
-//         <img src="${event.target.dataset.source}" width="1140" height="auto">
-//     </div>
-// `)
-// instance.show()
-    // import * as basicLightbox from 'basiclightbox'
 
 const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}">
 `)
 
 instance.show()
-    console.log(event.target.dataset.source);
-    
+    // console.log(event.target.dataset.source);
+    // закриття модального вікна
     galleryContainer.addEventListener('keydown', closeImage)
     function closeImage(event) {
         if (event.code === 'Escape') {
@@ -111,10 +62,4 @@ instance.show()
         
     }
 }
-
-
-
-// Зверни увагу на те, що зображення обгорнуте посиланням,
-// отже по кліку за замовчуванням користувач буде перенаправлений на іншу сторінку. 
-// Заборони цю поведінку за замовчуванням.
 
